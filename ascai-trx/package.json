@@ -1,0 +1,30 @@
+{
+  "name": "ascai-trx",
+  "version": "1.0.0",
+  "description": "Ascai - smart contract analysis using AI",
+  "main": "./build/index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "author": "zerogravityexplorer",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.3.0",
+    "style-loader": "^1.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "axios": "^1.5.0",
+    "ethers": "^5.7.2",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
