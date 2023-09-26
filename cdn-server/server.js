@@ -5,6 +5,7 @@ const app = express();
 const port = 3000; // You can change this to your desired port
 const axios = require("axios");
 const { Configuration, OpenAIApi } = require("openai");
+require("dotenv").config();
 
 // Use body-parser middleware to parse JSON requests
 app.use(bodyParser.json());
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 // Enable CORS for all routes
 app.use(cors());
 
+console.log(databaseUrl, apiKey);
 // Store received data in an array (for demonstration purposes)
 
 // Route to receive data from your library
@@ -20,7 +22,7 @@ app.post("/receive-data", async (req, res) => {
     const data = req.body;
     receivedData = data;
     console.log("Received Data:", data);
-    const apiKey = "UXHQRSK8A2TFSAZP1SGQD1SGFSPXCRFRDI"; // Replace with your Bttcscan API key
+    const apiKey = process.env.BTTC_API_KEY;
 
     // All details required to analyze the contract
     const contractAddress = receivedData.contractAddress; // Replace with your dynamic address
@@ -50,10 +52,7 @@ app.post("/receive-data", async (req, res) => {
     console.log(result);
 
     // Send the response
-    res.status(200).send({
-      message: "Data received successfully",
-      receivedData: result,
-    });
+    res.status(200).send({ result });
   } catch (error) {
     // Handle errors here
     console.error(error);
@@ -61,16 +60,26 @@ app.post("/receive-data", async (req, res) => {
   }
 });
 
-async function explainSmartContract(contractDetails) {
+async function explainSmartContract(details) {
+  const openAIApiKey = process.env.OPEN_AI_API_KEY;
   const configuration = new Configuration({
-    apiKey: "",
+    apiKey: openAIApiKey,
   });
   const openai = new OpenAIApi(configuration);
+  console.log(details);
+
+  var contractDetails = `
+  input: ${details.input},
+  params: { value: ${details.params.value}, gasLimit: ${details.params.gasLimit} },
+  functionName: '${details.functionName}',
+  sourceCode: \`${details.sourceCode}\`
+`;
+
   const messages = [
     {
       role: "system",
       content:
-        "Explain what the contract call will do with the functionName, inputs and params called, from the source code.",
+        "Explain what the contract call will do with the functionName, inputs and params called, from the source code to a normal user.",
     },
     { role: "user", content: contractDetails },
   ];
