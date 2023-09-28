@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // Enable CORS for all routes
 app.use(cors());
 
-console.log(databaseUrl, apiKey);
+// console.log(databaseUrl, apiKey);
 // Store received data in an array (for demonstration purposes)
 
 // Route to receive data from your library
