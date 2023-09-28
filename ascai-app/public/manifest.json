@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Contract Analysis AI",
+  "version": "1.0",
+
+  "description": "A powerful browser extension that empowers users to analyze the smart contract functions ",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["tabs"],
+  "host_permissions": ["<all_urls>"]
+}
