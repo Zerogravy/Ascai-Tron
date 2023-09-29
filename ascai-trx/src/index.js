@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import axios from "axios";
 import Popup from "./Popup";
+import AscaiAbi from "./contracts/Ascai.json";
 
 export let data = {};
 
@@ -18,41 +19,50 @@ export async function sendTransactionDetails(
   // Construct and send transaction details to your CDN or storage
   const cdnEndpoint = "http://localhost:3000/receive-data";
 
-  // const encodedData = storeMyNumberContract.interface.encodeFunctionData(
-  //   functionName,
-  //   params
-  // );
-  // console.log("first");
-  // // Send the transaction
-  // const tx = await signer.sendTransaction({
-  //   to: contractAddress,
-  //   data: encodedData,
-  //   value: 0, // Set this to 0 if it's not a payable function
-  // });
-
-  // // Wait for the transaction to be mined
-  // await tx.wait();
-
-  // // Transaction successful
-  // console.log("Transaction successful!");
-
-  // Use ethers to decode the encoded function
-
-  const transactionDetails = {
-    contractAddress,
-    functionName,
-    inputValue,
-    params,
-  };
-
+  //for checking the subscription
   try {
-    // Send the transactionDetails to your CDN
-    const response = await sendToCDN(transactionDetails, cdnEndpoint);
+    if (window.ethereum) {
+      const ethereumProvider = new ethers.providers.Web3Provider(
+        window.ethereum
+      );
+      await window.ethereum.enable(); // Request user permission to connect
+      let signer = ethereumProvider.getSigner();
+      const signerAddress = await signer.getAddress();
 
-    return response;
-  } catch (error) {
-    console.error("Error sending data to CDN:", error);
-    throw error;
+      const suscribeUser = new ethers.Contract(
+        "0x8bda6aC4cdDEbf88f1794120e1D5ab1c33a6A3bc",
+        AscaiAbi,
+        signer
+      );
+
+      const isSuscribed = await suscribeUser.isSubscriptionActive(
+        signerAddress
+      );
+      console.log(isSuscribed);
+
+      if (isSuscribed) {
+        const transactionDetails = {
+          contractAddress,
+          functionName,
+          inputValue,
+          params,
+        };
+
+        try {
+          // Send the transactionDetails to your CDN
+          const response = await sendToCDN(transactionDetails, cdnEndpoint);
+
+          return response;
+        } catch (error) {
+          console.error("Error sending data to CDN:", error);
+          throw error;
+        }
+      } else {
+        alert("You are already suscribed");
+      }
+    }
+  } catch (err) {
+    console.log(err);
   }
 }
 
