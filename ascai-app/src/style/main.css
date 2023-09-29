@@ -1,0 +1,249 @@
+.header {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+.navbar {
+  padding: 50px 30px;
+  display: flex;
+  z-index: 0;
+  margin: 0 auto;
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo h1 {
+  line-height: 2;
+  font-size: 30px;
+  text-align: left;
+  flex: 1 1;
+  font-family: "Merriweather Sans";
+  font-weight: 700;
+}
+
+.extension-btn {
+  padding: 20px;
+  /* width: 30%; */
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  font-family: "Comfortaa";
+  color: #deff02;
+  border: 1px solid #deff02;
+  background: #ffffff1f;
+  border-radius: 15px;
+  backdrop-filter: blur(23px);
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .header {
+    .navbar {
+      justify-content: space-around;
+      .logo h1 {
+        line-height: 1;
+        font-size: 10px;
+      }
+      .navmenu {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-top: 2px solid rgb(211, 211, 211);
+        border-bottom: 2px solid rgb(211, 211, 211);
+        z-index: 100;
+        position: fixed;
+        left: -100%;
+        top: 3.3rem;
+        flex-direction: column;
+        background: rgb(18, 18, 18);
+        width: 50%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+
+        .navitem {
+          margin: 2.5rem 0;
+        }
+      }
+      .navmenu.active {
+        left: 0;
+      }
+    }
+  }
+}
+/* ............landing page.................. */
+
+.main-div-landing {
+  background-color: #1e1e1e;
+  min-height: 100vh;
+}
+.home-left-section {
+  width: 50%;
+  margin-left: 100px;
+  display: flex;
+  text-align: initial;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+.hero-right {
+  width: 50%;
+  height: 100vh;
+}
+.hero-right-bg1 {
+  width: 100%;
+  height: 99%;
+}
+
+.landing-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.home-title {
+  font-size: 5.2rem;
+  letter-spacing: 2px;
+  line-height: 90px;
+  color: #ffffff;
+  font-family: "BalooBhai2";
+  margin: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(222, 255, 2, 0.8883928571428571) 13%,
+    rgba(0, 255, 255, 0.896796218487395) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.home-title2 {
+  color: #2dda8f;
+  padding: 10px;
+  font-size: 20px;
+  margin: 0;
+}
+
+.home-desc {
+  font-size: 1rem;
+  font-family: "Fredoka";
+  letter-spacing: 2px;
+  padding: 20px 10px;
+  color: white;
+  margin: 0;
+  width: 60%;
+  line-height: 25px;
+}
+.start-btn-flex {
+  background: linear-gradient(
+    90deg,
+    rgba(222, 255, 2, 0.8883928571428571) 13%,
+    rgba(0, 255, 255, 0.896796218487395) 100%
+  );
+  padding: 20px 40px;
+  border-radius: 50px;
+  width: 30px;
+}
+.footer-flex {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  padding: 20px 0px;
+  font-family: "Fredoka";
+  bottom: 0;
+  background-image: url("../assets/footer.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  z-index: 1;
+  justify-content: space-around;
+}
+/* ........contract details.......... */
+.contract-heroImg {
+  width: 100%;
+  height: 50vh;
+}
+.contract-details-sub-section {
+  background-image: url();
+}
+.contract-heading {
+  font-family: "BalooBhai2";
+  margin: 0;
+  font-size: 4rem;
+  letter-spacing: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(222, 255, 2, 0.8883928571428571) 13%,
+    rgba(0, 255, 255, 0.896796218487395) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.contract-main-flex {
+  position: absolute;
+  width: 100%;
+  margin: 0 auto;
+  top: 15rem;
+}
+.section2 {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.contract-details-sub-section {
+  background-color: #1c2024;
+  align-items: center;
+  font-family: "Fredoka";
+  text-align: start;
+  padding: 50px;
+  margin: 0 auto;
+  width: 60%;
+  border-radius: 40px;
+  justify-content: flex-start;
+}
+.contract-details-section-main {
+  background-color: #13161a;
+  border-radius: 30px;
+  border-left: 1px solid #2dda8f;
+  border-right: 1px solid #2dda8f;
+  width: 60%;
+  margin: 50px auto;
+  padding: 80px 0px;
+}
+.node-style {
+  background: "rgb(77, 77, 77)";
+  color: white;
+  font-size: 1rem;
+  width: 300px;
+  border-radius: 10px;
+}
+
+/* ..............spinner............... */
+
+/* Define styles for the loader container */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Define styles for the loader spinner */
+.loader-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #2dda8f; /* Change the color as needed */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+/* Define animation for spinner rotation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

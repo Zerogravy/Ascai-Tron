@@ -1,0 +1,132 @@
+button {
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+button:hover {
+  transform: scale(1.01);
+}
+
+button.connect-wallet {
+  padding: 20px 50px;
+  font-size: 1.2rem;
+  border: none;
+  font-family: "Comfortaa";
+  letter-spacing: 1px;
+  border-radius: 15px;
+  backdrop-filter: blur(23px);
+  background: linear-gradient(
+    90deg,
+    rgba(222, 255, 2, 0.8883928571428571) 13%,
+    rgba(0, 255, 255, 0.896796218487395) 100%
+  );
+  color: #1e1e1e;
+  border: none;
+  border-radius: 10px;
+  letter-spacing: 1.5px;
+
+  position: relative;
+  z-index: 1000;
+}
+
+button.chain-button {
+  margin: auto 10px;
+  color: #1e1e1e;
+  font-weight: 500;
+  border: 0px;
+  border-radius: 15px;
+}
+.connect-btn {
+  padding: 20px;
+  font-size: 1.2rem;
+
+  color: #1e1e1e;
+  border: none;
+  font-family: "Comfortaa";
+  letter-spacing: 1px;
+  border-radius: 15px;
+  backdrop-filter: blur(23px);
+  background: linear-gradient(
+    90deg,
+    rgba(222, 255, 2, 0.8883928571428571) 13%,
+    rgba(0, 255, 255, 0.896796218487395) 100%
+  );
+}
+button.address-balance {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0px;
+  padding: 2px;
+  padding-left: 5px;
+  font-size: 0.865rem;
+  background-color: none;
+  color: #1e1e1e;
+  border: 0px;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+span.account-balance {
+  color: #1e1e1e;
+  margin-left: 5px;
+  border-radius: 10px;
+  padding: 4px 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+button.wrong-network {
+  display: flex;
+  font-family: "HammersmithOne-Regular";
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(222, 255, 2, 0.8883928571428571) 13%,
+    rgba(0, 255, 255, 0.896796218487395) 100%
+  );
+  color: #1e1e1e;
+  font-weight: 500;
+  letter-spacing: 3px;
+}
+
+@media only screen and (max-width: 1200px) {
+  button.connect-wallet {
+    padding: 10px 10px;
+    font-size: 0.865rem;
+    letter-spacing: normal;
+  }
+
+  button.chain-button {
+    padding: 10px 10px;
+    font-size: 0.865rem;
+    letter-spacing: normal;
+  }
+
+  span.disable-mobile {
+    display: none;
+  }
+
+  span.account-balance {
+    background-color: none;
+    color: black;
+    font-size: 0.865rem;
+    padding: 0;
+  }
+
+  span.account-balance svg {
+    fill: black;
+  }
+
+  button.address-balance {
+    content: "";
+    padding: 1px;
+  }
+}

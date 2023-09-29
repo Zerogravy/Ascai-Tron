@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: white;
 }
 
 .App-logo {
@@ -14,7 +15,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@font-face {
+  font-family: "Fredoka";
+  src: url(../public/Fredoka-Light.ttf);
+}
+
+@font-face {
+  font-family: "BalooBhai2";
+  src: url(../public/BalooBhai2-Medium.ttf);
+}
+@font-face {
+  font-family: "Comfortaa";
+  src: url(../public/Comfortaa-Medium.ttf);
+}
+@font-face {
+  font-family: "Fredoka-SemiBold";
+  src: url(../public/Fredoka-SemiBold.ttf);
 }

@@ -3,21 +3,42 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@metamask/detect-provider": "^2.0.0",
+    "@metamask/providers": "^11.1.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "assert": "^2.0.0",
     "axios": "^1.4.0",
+    "browserify-zlib": "^0.2.0",
+    "crypto-browserify": "^3.12.0",
+    "dotenv": "^16.3.1",
+    "ethers": "^5.7.2",
+    "fs": "^0.0.1-security",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-flow-renderer": "^10.3.17",
+    "react-icons": "^4.10.1",
+    "react-loader-spinner": "^5.3.4",
+    "react-router-dom": "^6.14.2",
     "react-scripts": "5.0.1",
+    "reactflow": "^11.7.4",
+    "sass": "^1.64.2",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "styled-components": "^6.0.7",
+    "url": "^0.11.1",
     "web-vitals": "^2.1.4",
     "web3": "^1.10.0",
-    "webextension-polyfill": "^0.10.0"
+    "web3-react": "^5.0.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,5 +58,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1"
   }
 }

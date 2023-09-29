@@ -1,13 +1,16 @@
-import React from "react";
+import LandingPage from "./components/LandingPage";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Popup from "./components/Popup";
-import getContractAddress from "./components/getContractAdderss";
 
 function App() {
   return (
     <div className="App">
-      <Popup />
-      <getContractAddress />
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<LandingPage />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
