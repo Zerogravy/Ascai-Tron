@@ -28,7 +28,7 @@ function LandingPage() {
               justifyContent: "space-between",
             }}
           >
-            <Link to="https://www.npmjs.com/package/ascai-trx">
+            <Link to="https://www.npmjs.com/package/ascai-trx" target="_blank">
               {" "}
               <img src={start} className="start-btn-flex"></img>
             </Link>

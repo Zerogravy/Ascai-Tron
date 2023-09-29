@@ -10,24 +10,24 @@ import AscaiAbi from "../artifacts/contracts/Ascai.sol/Ascai.json";
 function Navbar() {
   const navigate = useNavigate();
 
-  const suscribe = async () => {
+  const subscribe = async () => {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const signerAddress = await signer.getAddress();
-      const suscribeUser = new ethers.Contract(
+      const subscribeUser = new ethers.Contract(
         "0x8bda6aC4cdDEbf88f1794120e1D5ab1c33a6A3bc",
         AscaiAbi,
         signer
       );
 
-      const isSuscribed = await suscribeUser.isSubscriptionActive(
+      const isSubscribed = await subscribeUser.isSubscriptionActive(
         signerAddress
       );
 
-      if (isSuscribed) {
+      if (isSubscribed) {
         const subscriptionValidity =
-          await suscribeUser.getSubscriptionValidity();
+          await subscribeUser.getSubscriptionValidity();
         const date = new Date(subscriptionValidity * 1000); // Multiply by 1000 to convert from seconds to milliseconds
 
         // Convert to IST timezone (UTC+05:30)
@@ -43,7 +43,7 @@ function Navbar() {
           "This is a one-month plan. If you are subscribing, you will be able charged 1000 Bttc for one month. Do you want to proceed?"
         );
         if (confirmation) {
-          const tx = await suscribeUser.purchaseSubscription({ value: 1000 });
+          const tx = await subscribeUser.purchaseSubscription({ value: 1000 });
           const receipt = await tx.wait();
           console.log(receipt);
         }
@@ -70,8 +70,8 @@ function Navbar() {
             justifyContent: "space-evenly",
           }}
         >
-          <button className="extension-btn" onClick={() => suscribe()}>
-            Suscribe
+          <button className="extension-btn" onClick={() => subscribe()}>
+            subscribe
           </button>
 
           {/* <ConnectButtonCustom /> */}
