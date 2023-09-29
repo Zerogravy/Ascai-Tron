@@ -13,8 +13,12 @@ app.use(bodyParser.json());
 // Enable CORS for all routes
 app.use(cors());
 
-// console.log(databaseUrl, apiKey);
-// Store received data in an array (for demonstration purposes)
+app.get("/welcome", (req, res) => {
+  const welcomeMessage = "Welcome to ASCAI!";
+
+  // Send the welcome message as the response
+  res.status(200).send(welcomeMessage);
+});
 
 // Route to receive data from your library
 app.post("/receive-data", async (req, res) => {
@@ -69,7 +73,7 @@ async function explainSmartContract(details) {
   console.log(details);
 
   var contractDetails = `
-  input: ${details.input},
+  inputs: ${details.input},
   params: { value: ${details.params.value}, gasLimit: ${details.params.gasLimit} },
   functionName: '${details.functionName}',
   sourceCode: \`${details.sourceCode}\`
@@ -79,7 +83,7 @@ async function explainSmartContract(details) {
     {
       role: "system",
       content:
-        "Explain what the contract call will do with the functionName, inputs and params called, from the source code to a normal user.",
+        "Please assess whether the contract call with the 'functionName,' 'inputs,' and 'params' based on the provided source code is vulnerable. If not, describe in simple terms what the contract call will achieve",
     },
     { role: "user", content: contractDetails },
   ];
