@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import "../style/main.css";
@@ -6,25 +6,26 @@ import "../style/main.css";
 import { useNavigate } from "react-router-dom";
 import { ethers } from "ethers";
 import AscaiAbi from "../artifacts/contracts/Ascai.sol/Ascai.json";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount, useSigner } from "wagmi";
 
 function Navbar() {
   const navigate = useNavigate();
+  const { address, isConnected } = useAccount();
 
   const subscribe = async () => {
     try {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const signerAddress = await signer.getAddress();
       const subscribeUser = new ethers.Contract(
         "0x8bda6aC4cdDEbf88f1794120e1D5ab1c33a6A3bc",
         AscaiAbi,
         signer
       );
-
-      const isSubscribed = await subscribeUser.isSubscriptionActive(
-        signerAddress
-      );
-
+      console.log(address);
+      // const tx = await subscribeUser.purchaseSubscription({ value: 1000 });
+      const isSubscribed = await subscribeUser.isSubscriptionActive(address);
+      console.log(isSubscribed);
       if (isSubscribed) {
         const subscriptionValidity =
           await subscribeUser.getSubscriptionValidity();
@@ -40,7 +41,7 @@ function Navbar() {
         alert(`You are already suscribed till ${istDate}`);
       } else {
         var confirmation = window.confirm(
-          "This is a one-month plan. If you are subscribing, you will be able charged 1000 Bttc for one month. Do you want to proceed?"
+          "This is a one-month plan. If you are subscribing, you will be charged 1000 Btt for one month. Do you want to proceed?"
         );
         if (confirmation) {
           const tx = await subscribeUser.purchaseSubscription({ value: 1000 });
@@ -53,6 +54,13 @@ function Navbar() {
     }
   };
 
+  useEffect(() => {
+    // Load the Web3 script
+    const web3Script = document.createElement("script");
+    web3Script.src =
+      "https://cdnjs.cloudflare.com/ajax/libs/web3/1.7.4-rc.1/web3.min.js";
+    web3Script.async = true;
+  });
   return (
     <header className="header">
       <nav className="navbar">
@@ -70,9 +78,12 @@ function Navbar() {
             justifyContent: "space-evenly",
           }}
         >
-          <button className="extension-btn" onClick={() => subscribe()}>
-            subscribe
-          </button>
+          {isConnected ? (
+            <button className="extension-btn" onClick={() => subscribe()}>
+              subscribe
+            </button>
+          ) : null}
+          <ConnectButton />
 
           {/* <ConnectButtonCustom /> */}
         </div>
