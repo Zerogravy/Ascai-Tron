@@ -53,6 +53,7 @@ function ContractInteractionForm() {
         inputValue={data.inputValue}
         params={data.params}
         contractAbi={data.contractAbi}
+        buttonName="hello"
       />
     </div>
   );
