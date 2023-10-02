@@ -15,15 +15,19 @@ function Popup(props) {
             <h2 className="popup-head">Are you sure you want to proceed?</h2>
             <div style={{ margin: "50px auto" }}>
               <div className="data-flex">
-                <div className="data-lable">NLPGeneratedDescription: </div>
+                <div className="data-lable">Contract Address: </div>
+                <div id="popUpData0" className="data-value"></div>
+              </div>
+              <div className="data-flex">
+                <div className="data-lable">Description: </div>
                 <div id="popUpData1" className="data-value"></div>
               </div>
               <div className="data-flex">
-                <div className="data-lable">InputParameters: </div>
+                <div className="data-lable">Input Values: </div>
                 <div id="popUpData2" className="data-value"></div>
               </div>
               <div className="data-flex">
-                <div className="data-lable">SmartContractCode: </div>
+                <div className="data-lable">Extra params: </div>
                 <div id="popUpData3" className="data-value"></div>
               </div>
               <div className="data-flex">

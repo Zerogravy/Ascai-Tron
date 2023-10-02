@@ -9,13 +9,10 @@ export let data = {};
 
 export async function sendTransactionDetails(
   contractAddress,
-  signer,
   functionName,
   inputValue,
-  params,
-  contractAbi
+  params
 ) {
-  console.log(signer);
   // Construct and send transaction details to your CDN or storage
   const cdnEndpoint = "http://localhost:3000/receive-data";
 
@@ -58,7 +55,7 @@ export async function sendTransactionDetails(
           throw error;
         }
       } else {
-        alert("You are already suscribed");
+        alert("You are not suscribed to ASCAI");
       }
     }
   } catch (err) {
@@ -73,37 +70,31 @@ export async function sendToCDN(data, cdnEndpoint) {
     // Add other headers as needed
   };
   try {
-    // const response = await axios.post(cdnEndpoint, data);
-    const response = {
-      NLPGeneratedDescription:
-        "This function allows the sender to transfer 100 ETH from their address (0x5678HIJK9012LMNO) to the recipient's address (0xABCD1234EFGH5678).",
-      ContractInformation: {
-        SmartContractCode: "0x1234ABCD5678EFGH",
-        FunctionName: "transferFunds",
-        InputParameters:
-          "senderAddress: 0x5678HIJK9012LMNO, recipientAddress: 0xABCD1234EFGH5678, amount: 100 ETH",
-      },
+    const response = await axios.post(cdnEndpoint, data);
+    // const response = {
+    //   NLPGeneratedDescription:
+    //     "This function allows the sender to transfer 100 ETH from their address (0x5678HIJK9012LMNO) to the recipient's address (0xABCD1234EFGH5678).",
+    //   ContractInformation: {
+    //     SmartContractCode: "0x1234ABCD5678EFGH",
+    //     FunctionName: "transferFunds",
+    //     InputParameters:
+    //       "senderAddress: 0x5678HIJK9012LMNO, recipientAddress: 0xABCD1234EFGH5678, amount: 100 ETH",
+    //   },
 
-      ContractSafetyScore: 95,
-    };
+    //   ContractSafetyScore: 95,
+    // };
 
-    console.log(response);
-    const responseDataString1 = JSON.stringify(
-      response.NLPGeneratedDescription
-    );
-    const responseDataString2 = JSON.stringify(
-      response.ContractInformation.InputParameters
-    );
-    const responseDataString3 = JSON.stringify(
-      response.ContractInformation.SmartContractCode
-    );
-    const responseDataString4 = JSON.stringify(
-      response.ContractInformation.FunctionName
-    );
-    const responseDataString5 = JSON.stringify(response.ContractSafetyScore);
+    const details = response.data;
+    console.log(details);
+    const responseDataString1 = details.result;
+    const responseDataString2 = details.contractDetails.input;
+    const responseDataString3 = JSON.stringify(details.contractDetails.params);
+    const responseDataString4 = details.contractDetails.functionName;
+    const responseDataString5 = "55";
 
     // You can handle the response here if needed
     const popup = document.getElementById("popUp");
+    const popupdata0 = document.getElementById("popUpData0");
     const popupdata1 = document.getElementById("popUpData1");
     const popupdata2 = document.getElementById("popUpData2");
     const popupdata3 = document.getElementById("popUpData3");
@@ -111,14 +102,13 @@ export async function sendToCDN(data, cdnEndpoint) {
     const popupdata5 = document.getElementById("popUpData5");
     if (popup) {
       popup.style.display = "block";
+      popupdata0.innerHTML = data.contractAddress;
       popupdata1.innerHTML = responseDataString1;
       popupdata2.innerHTML = responseDataString2;
       popupdata3.innerHTML = responseDataString3;
       popupdata4.innerHTML = responseDataString4;
       popupdata5.innerHTML = responseDataString5;
     }
-    // return response.data;
-    // Ascai();
   } catch (error) {
     console.error("Error sending data to CDN:", error);
     throw error;
@@ -179,15 +169,13 @@ function Ascai(props) {
         onClick={() =>
           sendTransactionDetails(
             props.contractAddress,
-            props.signer,
             props.functionName,
             props.inputValue,
-            props.params,
-            props.contractAbi
+            props.params
           )
         }
       >
-        call
+        {props.buttonName}
       </button>
       <div className="loader-container">
         <svg
