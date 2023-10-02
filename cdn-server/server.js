@@ -42,7 +42,7 @@ app.post("/receive-data", async (req, res) => {
     const response = await axios.get(apiUrl);
 
     // Handle the API response here
-    console.log("Contract Data:", response.data);
+    // console.log("Contract Data:", response.data);
     sourceCode = response.data.result[0].SourceCode;
     contractDetails = {
       input: input,
@@ -52,11 +52,12 @@ app.post("/receive-data", async (req, res) => {
     };
 
     // Function call to get the NLP
-    let result = await explainSmartContract(contractDetails);
+    // let result = await explainSmartContract(contractDetails);
+    let result = "one two ka four four two ka one my name is lakhan";
     console.log(result);
 
     // Send the response
-    res.status(200).send({ result });
+    res.status(200).send({ result, contractDetails });
   } catch (error) {
     // Handle errors here
     console.error(error);
@@ -70,7 +71,6 @@ async function explainSmartContract(details) {
     apiKey: openAIApiKey,
   });
   const openai = new OpenAIApi(configuration);
-  console.log(details);
 
   var contractDetails = `
   inputs: ${details.input},
