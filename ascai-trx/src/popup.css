@@ -2,6 +2,7 @@
   position: absolute;
   width: 100vw;
   min-height: 100vh;
+  display: none;
 }
 .popup-overlay {
   position: fixed;
