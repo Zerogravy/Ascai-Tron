@@ -9,7 +9,7 @@ import AscaiAbi from "../artifacts/contracts/Ascai.sol/Ascai.json";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useSigner } from "wagmi";
 
-function Navbar() {
+function Navbar(props) {
   const navigate = useNavigate();
   const { address, isConnected } = useAccount();
 
@@ -38,16 +38,28 @@ function Navbar() {
         };
 
         const istDate = date.toLocaleString("en-US", options);
-        alert(`You are already suscribed till ${istDate}`);
+        props.setShowPopup({
+          show: true,
+          msg: `You are already suscribed till ${istDate}`,
+          type: "already-subscribed",
+        });
+        // alert(`You are already suscribed till ${istDate}`);
       } else {
-        var confirmation = window.confirm(
-          "This is a one-month plan. If you are subscribing, you will be charged 1000 Btt for one month. Do you want to proceed?"
-        );
-        if (confirmation) {
-          const tx = await subscribeUser.purchaseSubscription({ value: 1000 });
-          const receipt = await tx.wait();
-          console.log(receipt);
-        }
+        // var confirmation = window.confirm(
+        //   "This is a one-month plan. If you are subscribing, you will be charged 1000 Btt for one month. Do you want to proceed?"
+        // );
+        props.setShowPopup({
+          show: true,
+          msg: "This is a one-month plan. If you are subscribing, you will be charged 1000 Btt for one month. Do you want to proceed?",
+          type: "not-subscribed",
+        });
+        // if (confirmation) {
+        //   const tx = await subscribeUser.purchaseSubscription({
+        //     value: 1000,
+        //   });
+        //   const receipt = await tx.wait();
+        //   console.log(receipt);
+        // }
       }
     } catch (err) {
       console.log(err);

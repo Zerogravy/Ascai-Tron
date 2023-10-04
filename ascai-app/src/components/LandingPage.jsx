@@ -4,11 +4,12 @@ import home from "../assets/home.png";
 import "../style/main.css";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
+import Popup from "./Popup";
 
-function LandingPage() {
+function LandingPage(props) {
   return (
     <div className="main-div-landing">
-      <Navbar />
+      <Navbar setShowPopup={props.setShowPopup} />
       <div className="landing-flex">
         <div className="home-left-section">
           <h1 className="home-title">Contract</h1>
@@ -58,6 +59,9 @@ function LandingPage() {
           </div>
         </div>
       </footer>
+      {props.showPopup.show ? (
+        <Popup showPopup={props.showPopup} setShowPopup={props.setShowPopup} />
+      ) : null}
     </div>
   );
 }

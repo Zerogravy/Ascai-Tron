@@ -10,6 +10,7 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
   const BTTChain = {
@@ -58,13 +59,24 @@ function App() {
     publicClient,
   });
 
+  const [showPopup, setShowPopup] = useState({ show: false, msg: "" });
+
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains}>
         <div className="App">
           <BrowserRouter>
             <Routes>
-              <Route exact path="/" element={<LandingPage />}></Route>
+              <Route
+                exact
+                path="/"
+                element={
+                  <LandingPage
+                    setShowPopup={setShowPopup}
+                    showPopup={showPopup}
+                  />
+                }
+              ></Route>
             </Routes>
           </BrowserRouter>
         </div>
