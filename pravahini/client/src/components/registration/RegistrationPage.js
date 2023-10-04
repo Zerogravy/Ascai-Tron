@@ -329,8 +329,6 @@ function RegistrationPage() {
           ]}
           params={data.params}
           contractAbi={data.contractAbi}
-          buttonName="Register"
-          onClick={createUserAccount}
         />
       )}
     </div>
