@@ -1,6 +1,6 @@
 {
   "name": "ascai-trx",
-  "version": "1.3.0",
+  "version": "1.3.4",
   "description": "Ascai - smart contract analysis using AI",
   "main": "./build/index.js",
   "scripts": {

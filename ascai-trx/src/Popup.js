@@ -43,6 +43,7 @@ function Popup(props) {
               <button id="approve" onClick={() => props.approve()}>
                 Approve
               </button>
+
               <button id="close-popup" onClick={closePopup}>
                 Cancel
               </button>
