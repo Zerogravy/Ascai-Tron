@@ -39,13 +39,20 @@ function ContractInteractionForm() {
       console.log("error", error);
     }
   };
+
+  const customFunction = () => {
+    const btn = document.getElementById("ascai-btn");
+    btn.click();
+  };
   useEffect(() => {
     handleSendTransaction();
   }, []);
   return (
     <div>
       {/* {result ? result : null} */}
-
+      <button type="submit" onClick={customFunction}>
+        Register
+      </button>
       <Ascai
         contractAddress={data.contractAddress}
         signer={data.signer}
@@ -53,7 +60,6 @@ function ContractInteractionForm() {
         inputValue={data.inputValue}
         params={data.params}
         contractAbi={data.contractAbi}
-        buttonName="hello"
       />
     </div>
   );
