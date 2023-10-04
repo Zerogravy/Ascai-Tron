@@ -1,11 +1,13 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors"); // Import the cors middleware
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors"; // Import the cors middleware
 const app = express();
-const port = 3000; // You can change this to your desired port
-const axios = require("axios");
-const { Configuration, OpenAIApi } = require("openai");
-require("dotenv").config();
+const port = 3004; // You can change this to your desired port
+import axios from "axios";
+import { Configuration, OpenAIApi } from "openai";
+import dotenv from "dotenv";
+import fetch from "node-fetch";
+dotenv.config(); // Load environment variables from a .env file
 
 // Use body-parser middleware to parse JSON requests
 app.use(bodyParser.json());
@@ -24,7 +26,7 @@ app.get("/welcome", (req, res) => {
 app.post("/receive-data", async (req, res) => {
   try {
     const data = req.body;
-    receivedData = data;
+    let receivedData = data;
     console.log("Received Data:", data);
     const apiKey = process.env.BTTC_API_KEY;
 
@@ -38,26 +40,56 @@ app.post("/receive-data", async (req, res) => {
 
     const apiUrl = `https://api-testnet.bttcscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`;
 
-    // Use async/await to make the API call
-    const response = await axios.get(apiUrl);
+    try {
+      fetch(apiUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Request failed with status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((responseData) => {
+          // Handle the successful response here
+          console.log("Response Data:", responseData.result[0].SourceCode);
+          // console.log("Contract Data:", response.data);
+          sourceCode = "response.data.result[0].SourceCode";
+          contractDetails = {
+            input: input,
+            params: params,
+            functionName: functionName,
+            sourceCode: sourceCode,
+          };
 
-    // Handle the API response here
-    // console.log("Contract Data:", response.data);
-    sourceCode = response.data.result[0].SourceCode;
-    contractDetails = {
-      input: input,
-      params: params,
-      functionName: functionName,
-      sourceCode: sourceCode,
-    };
+          // Function call to get the NLP
+          // let result = await explainSmartContract(contractDetails);
+          let result = "one two ka four four two ka one my name is lakhan";
+          console.log(result);
 
-    // Function call to get the NLP
-    // let result = await explainSmartContract(contractDetails);
-    let result = "one two ka four four two ka one my name is lakhan";
-    console.log(result);
+          // Send the response
+          res.status(200).send({ result, contractDetails });
+        })
+        .catch((error) => {
+          // Handle errors here
+          console.error("Error:", error);
+        });
+    } catch (error) {
+      // Handle errors here
+      console.error("Error:", error);
+    }
 
-    // Send the response
-    res.status(200).send({ result, contractDetails });
+    // const apiUrl = `https://api-testnet.bttcscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`;
+    // try {
+    //   const response = await fetch(apiUrl);
+
+    //   if (!response.ok) {
+    //     console.log(response.status);
+    //   }
+
+    //   // Handle the API response here
+    // } catch (error) {
+    //   // Handle errors here
+    //   console.error("An error occurred:", error);
+    // }
   } catch (error) {
     // Handle errors here
     console.error(error);
