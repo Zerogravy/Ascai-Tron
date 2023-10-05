@@ -10,12 +10,12 @@ function ContractInteractionForm() {
   const [showPopup, setPopup] = useState(false);
 
   const [data, setData] = useState({
-    contractAddress: "0x8048ae8cDadA2A466B38679e41b42f613F3912F2",
+    contractAddress: "0xB94505FDF945d78eA140fEF348e341FFEde469C9",
     signer: "",
     functionName: "set",
     inputValue: "",
     params: {
-      value: 0,
+      value: 1000000000,
       gasLimit: 100000,
     },
     contractAbi: storeMyNumberAbi,
