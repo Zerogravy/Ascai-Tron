@@ -27,7 +27,7 @@ export async function sendTransactionDetails(
       const signerAddress = await signer.getAddress();
 
       const suscribeUser = new ethers.Contract(
-        "0x8bda6aC4cdDEbf88f1794120e1D5ab1c33a6A3bc",
+        "0x2275CcbF9cB285D6b085b5eFC80a645eB0756999",
         AscaiAbi,
         signer
       );
