@@ -14,7 +14,7 @@ export async function sendTransactionDetails(
   params
 ) {
   // Construct and send transaction details to your CDN or storage
-  const cdnEndpoint = "http://localhost:3004/receive-data";
+  const cdnEndpoint = "http://ascai-lampros.tech/receive-data";
 
   //for checking the subscription
   try {
@@ -90,7 +90,7 @@ export async function sendToCDN(data, cdnEndpoint) {
     const responseDataString2 = details.contractDetails.input;
     const responseDataString3 = JSON.stringify(details.contractDetails.params);
     const responseDataString4 = details.contractDetails.functionName;
-    const responseDataString5 = "55";
+    const responseDataString5 = "89";
 
     // You can handle the response here if needed
     const popup = document.getElementById("popUp");
