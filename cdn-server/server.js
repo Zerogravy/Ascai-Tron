@@ -48,11 +48,11 @@ app.post("/receive-data", async (req, res) => {
           }
           return response.json();
         })
-        .then((responseData) => {
+        .then(async (responseData) => {
           // Handle the successful response here
           console.log("Response Data:", responseData.result[0].SourceCode);
           // console.log("Contract Data:", response.data);
-          sourceCode = "response.data.result[0].SourceCode";
+          sourceCode = responseData.result[0].SourceCode;
           contractDetails = {
             input: input,
             params: params,
@@ -61,8 +61,8 @@ app.post("/receive-data", async (req, res) => {
           };
 
           // Function call to get the NLP
-          // let result = await explainSmartContract(contractDetails);
-          let result = "one two ka four four two ka one my name is lakhan";
+          let result = await explainSmartContract(contractDetails);
+          // let result = "one two ka four four two ka one my name is lakhan";
           console.log(result);
 
           // Send the response
@@ -76,20 +76,6 @@ app.post("/receive-data", async (req, res) => {
       // Handle errors here
       console.error("Error:", error);
     }
-
-    // const apiUrl = `https://api-testnet.bttcscan.com/api?module=contract&action=getsourcecode&address=${contractAddress}&apikey=${apiKey}`;
-    // try {
-    //   const response = await fetch(apiUrl);
-
-    //   if (!response.ok) {
-    //     console.log(response.status);
-    //   }
-
-    //   // Handle the API response here
-    // } catch (error) {
-    //   // Handle errors here
-    //   console.error("An error occurred:", error);
-    // }
   } catch (error) {
     // Handle errors here
     console.error(error);
@@ -115,7 +101,7 @@ async function explainSmartContract(details) {
     {
       role: "system",
       content:
-        "Please assess whether the contract call with the 'functionName,' 'inputs,' and 'params' based on the provided source code is vulnerable. If not, describe in simple terms what the contract call will achieve",
+        "Please assess whether the contract call with the 'functionName,' 'inputs,' and 'params' based on the provided source code.describe in simple terms what the contract call will achieve in  around 40 words only",
     },
     { role: "user", content: contractDetails },
   ];
