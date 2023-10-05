@@ -10,7 +10,7 @@ function ContractInteractionForm() {
   const [showPopup, setPopup] = useState(false);
 
   const [data, setData] = useState({
-    contractAddress: "0xB94505FDF945d78eA140fEF348e341FFEde469C9",
+    contractAddress: "0x2275CcbF9cB285D6b085b5eFC80a645eB0756999",
     signer: "",
     functionName: "set",
     inputValue: "",
