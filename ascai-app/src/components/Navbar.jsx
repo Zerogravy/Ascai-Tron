@@ -18,7 +18,7 @@ function Navbar(props) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const subscribeUser = new ethers.Contract(
-        "0x8bda6aC4cdDEbf88f1794120e1D5ab1c33a6A3bc",
+        "0xB4b0611B2055A61D34D5d854145462356882Fd1C",
         AscaiAbi,
         signer
       );
