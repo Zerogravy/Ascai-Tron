@@ -9,13 +9,13 @@ function Popup(props) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const subscribeUser = new ethers.Contract(
-        "0xB4b0611B2055A61D34D5d854145462356882Fd1C",
+        "0x2275CcbF9cB285D6b085b5eFC80a645eB0756999",
         AscaiAbi,
         signer
       );
 
       const tx = await subscribeUser.purchaseSubscription({
-        value: 1000000000,
+        value: ethers.utils.parseEther("1000"),
       });
       const receipt = await tx.wait();
       console.log(receipt);
