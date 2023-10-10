@@ -93,6 +93,42 @@
   height: 99%;
 }
 
+.test-instructions {
+  max-height: 300px; /* Set a maximum height to make it scrollable */
+  overflow: auto; /* Enable vertical scrollbar if content overflows */
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.test-instructions h2 {
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.test-instructions strong {
+  font-weight: bold;
+}
+
+.test-instructions p {
+  margin: 0;
+}
+
+.test-instructions ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.test-instructions a {
+  color: #007bff; /* Style links with a blue color */
+  text-decoration: none;
+}
+
+.test-instructions a:hover {
+  text-decoration: underline; /* Underline links on hover */
+}
+
 .landing-flex {
   display: flex;
   align-items: center;

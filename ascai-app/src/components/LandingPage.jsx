@@ -5,8 +5,12 @@ import "../style/main.css";
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import Popup from "./Popup";
+import InstructionPopup from "./InstructionPopup";
+import { useState } from "react";
 
 function LandingPage(props) {
+  const [instructions, setInstructions] = useState(false);
+
   return (
     <div className="main-div-landing">
       <Navbar setShowPopup={props.setShowPopup} />
@@ -46,7 +50,17 @@ function LandingPage(props) {
               Install Npm Package
             </div>
           </div>
+          <button
+            className="extension-btn"
+            onClick={() => {
+              setInstructions(true);
+            }}
+          >
+            {" "}
+            View Test Instructions
+          </button>
         </div>
+
         <div className="hero-right">
           <img className="hero-right-bg1" src={home} alt="backgroundimage" />
         </div>
@@ -61,6 +75,9 @@ function LandingPage(props) {
       </footer>
       {props.showPopup.show ? (
         <Popup showPopup={props.showPopup} setShowPopup={props.setShowPopup} />
+      ) : null}
+      {instructions ? (
+        <InstructionPopup setInstructions={setInstructions} />
       ) : null}
     </div>
   );
