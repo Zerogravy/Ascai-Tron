@@ -33,13 +33,13 @@ function InstructionPopup(props) {
             </a>
           </li>
           <li>Follow the registration process on the testing site.</li>
-          <li>
+          {/* <li>
             Alternatively, you can also test it on this site with a simple
             function call:
             <a href="https://ascai-tron-zcng.vercel.app/" target="_blank">
               Test Site
             </a>
-          </li>
+          </li> */}
         </div>
         <br></br>
         <button
